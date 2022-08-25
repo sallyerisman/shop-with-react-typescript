@@ -9,7 +9,7 @@
   margin: auto;
 }
 
-.button__cart {
+.button.button__cart {
   width: 3rem;
   height: 3rem;
   background: none;
@@ -19,7 +19,7 @@
 }
 
 .icon__cart {
-  color: lightskyblue;
+  color: rgb(77, 139, 178);
   font-size: 1.3rem;
 }
 
