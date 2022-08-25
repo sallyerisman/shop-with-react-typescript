@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './StoreItem.css'
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { formatCurrency } from '../utils/formatCurrency'
 
 type StoreItemProps = {
@@ -11,16 +11,35 @@ type StoreItemProps = {
 }
 
 const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
+  const [quantity, setQuantity] = useState(null)
   const formatedPrice = formatCurrency(price)
 
   return (
-    <Card>
+    <Card className="card h-100">
       <Card.Img className="card__img" src={imgUrl}/>
       <Card.Body className="card__body">
         <Card.Title className="card__title">
           <span className="card__title--name">{name}</span>
           <span className="card__title--price">{formatedPrice}</span>
         </Card.Title>
+        <div className="card__div mt-auto">
+          {quantity 
+            ? (
+                <>
+                  <div className="card__button--container">
+                    <Button className="card__button card__button--plus">+</Button>
+                    <span className="card__button--info">{quantity} in cart</span>
+                    <Button className="card__button card__button--minus">-</Button>
+                  </div>
+                  <Button className="card__button card__button--remove">Remove</Button>
+                </>
+              )
+            : (
+              <Button className="card__button card__button--add">Add to cart</Button>
+            )
+
+          }
+        </div>
       </Card.Body>
     </Card>
   )
