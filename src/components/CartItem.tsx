@@ -15,8 +15,8 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
   if (!item ) return null
 
   return (
-    <Stack direction="horizontal" gap={2} className="cart-item__container d-flex align-items-center">
-      <img src={item.imgUrl} alt="Product" className="cart-item__img" style={{ width: "125px", height: "75px", objectFit: "cover"}} />
+    <Stack direction="horizontal" gap={2} className="cart-item__container">
+      <img src={item.imgUrl} alt="Product" className="cart-item__img" />
       <div className="cart-item__content">          
         <div className="cart-item__single">
           {item.name} {" "}

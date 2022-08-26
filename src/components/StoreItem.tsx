@@ -1,4 +1,3 @@
-import React from 'react'
 import './StoreItem.css'
 import { Button, Card } from 'react-bootstrap'
 import { formatCurrency } from '../utils/formatCurrency'
