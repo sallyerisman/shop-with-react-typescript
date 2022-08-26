@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './StoreItem.css'
 import { Button, Card } from 'react-bootstrap'
 import { formatCurrency } from '../utils/formatCurrency'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 type StoreItemProps = {
   id: number
@@ -11,7 +12,14 @@ type StoreItemProps = {
 }
 
 const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
-  const [quantity, setQuantity] = useState(null)
+  const { 
+    getItemQuantity, 
+    increaseItemQuantity, 
+    decreaseItemQuantity, 
+    removeFromCart
+  } = useShoppingCart()
+
+  const quantity = getItemQuantity(id)
   const formatedPrice = formatCurrency(price)
 
   return (
@@ -27,15 +35,31 @@ const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
             ? (
                 <>
                   <div className="card__button--container">
-                    <Button className="card__button card__button--plus">+</Button>
+                    <Button 
+                      className="card__button card__button--minus"
+                      onClick={() => decreaseItemQuantity(id)}
+                    >-
+                    </Button>
                     <span className="card__button--info">{quantity} in cart</span>
-                    <Button className="card__button card__button--minus">-</Button>
+                    <Button 
+                      className="card__button card__button--plus"
+                      onClick={() => increaseItemQuantity(id)}
+                    >+
+                    </Button>
                   </div>
-                  <Button className="card__button card__button--remove">Remove</Button>
+                  <Button 
+                    className="card__button card__button--remove"
+                    onClick={() => removeFromCart(id)}
+                  >Remove
+                  </Button>
                 </>
               )
             : (
-              <Button className="card__button card__button--add">Add to cart</Button>
+              <Button 
+                className="card__button card__button--add"
+                onClick={() => increaseItemQuantity(id)}
+              >Add to cart
+              </Button>
             )
 
           }

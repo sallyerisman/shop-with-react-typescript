@@ -1,8 +1,5 @@
 
-const formatCurrency = ( price : number ) => {
-  let formattedPrice = price.toString().replace(/,/g,'');
-  let newPrice = Number(formattedPrice)
-
-  return `${newPrice} kr`
+const formatCurrency = (price : number ) => {
+  return `${price.toLocaleString('sv-SV')} kr`
 }
 export {formatCurrency}
